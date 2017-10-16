@@ -33,6 +33,7 @@ public class TouristPresenter implements ITouristPresenter {
         /*
         ::주의::
         인터렉터를 무조건 싱글톤으로 전환해주시기 바랍니다.
+        전환 하였습니다.
          */
         touristInteractor = TouristInteractor.getInstance();
         this.view = view;
@@ -49,6 +50,11 @@ public class TouristPresenter implements ITouristPresenter {
     }
 
     private void connect(Context context) {
-        touristInteractor.connect(context);
+        try {
+            touristInteractor.connect(context);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            Log.d(TAG, "sendToServer() Tourist null");
+        }
     }
 }

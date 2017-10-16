@@ -39,4 +39,74 @@ public class Tourist {
     //이런 변수를 추가해서 서로를 분간하는걸 빠르게 할수도 있습니다.
     //예를 들면 그냥 tourist1이렇게 스트링을 주는 걸로 말이죠.
     //private String 아무변수;
+
+
+    @Override
+    public String toString() {
+        return "Tourist{" +
+                "lon=" + lon +
+                ", lat=" + lat +
+                ", lang='" + lang + '\'' +
+                ", phonenum='" + phonenum + '\'' +
+                ", accepted=" + accepted +
+                ", uuid=" + uuid +
+                ", officer=" + officer +
+                '}';
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getPhonenum() {
+        return phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public UUID getOfficer() {
+        return officer;
+    }
+
+    public void setOfficer(UUID officer) {
+        this.officer = officer;
+    }
 }

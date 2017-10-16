@@ -1,6 +1,10 @@
 package com.example.user.myapplication.service;
 
+import android.content.Context;
+
 import com.example.user.myapplication.domain.Tourist;
+
+import java.util.UUID;
 
 /** by Hong Ji Hoon aka Hongvyo on github,
  *  Kim Eun Hye,
@@ -21,8 +25,24 @@ interface ITouristService {
      * 어느 위치에 기억을 시킬지가 가장 큰 문제인데
      * 로직을 짜면서 생각해주시면 됩니다.
      *
+     * @param uuid 관광객의 UUID
+     * @param phonenum 관광객의 폰번
      * @return tourist 새로운 관광객 정보를 리턴합니다.
      */
-    public Tourist setupTourist();
+    public Tourist setupTourist(UUID uuid, String phonenum);
+
+    /**
+     *
+     * @param applicationContext 앱 콘텍스트
+     * @return UUID인 관광객 고유 식별 번호
+     */
+    public UUID generateUUID(Context applicationContext);
+
+    /**
+     *
+     * @param applicationContext 앱 콘텍스트
+     * @return String인 전화번호
+     */
+    public String getPN(Context applicationContext);
 
 }

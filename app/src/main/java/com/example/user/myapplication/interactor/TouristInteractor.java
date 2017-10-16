@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.user.myapplication.domain.Officer;
+import com.example.user.myapplication.domain.Tourist;
 import com.example.user.myapplication.service.BackgroundService;
 import com.example.user.myapplication.service.SeoulAPIService;
 import com.example.user.myapplication.service.TouristService;
@@ -95,8 +96,14 @@ public class TouristInteractor implements ITouristInteractor {
 
     @Override
     public void connect(Context context) {
-        Intent intent = new Intent(context, BackgroundService.class);
-        context.startService(intent);
+        Tourist tourist = touristService.setupTourist(touristService.generateUUID(context),touristService.getPN(context));
+        if (tourist == null) {
+            //널일수 있는 만약의 경우를 대비해서
+            throw new NullPointerException();
+        } else {
+            Intent intent = new Intent(context, BackgroundService.class);
+            context.startService(intent);
+        }
     }
 
     @Override

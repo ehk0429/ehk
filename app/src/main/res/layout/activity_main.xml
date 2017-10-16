@@ -17,7 +17,10 @@
         android:layout_column="0"
         android:layout_row="0"
         android:layout_columnSpan="2"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView3"
@@ -26,7 +29,9 @@
         android:layout_column="0"
         android:layout_row="1"
         android:layout_columnSpan="2"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/TouristBtn"
@@ -35,7 +40,13 @@
         android:layout_gravity="fill"
         android:layout_column="0"
         android:layout_row="2"
-        android:text="@string/touristBtnText" />
+        android:text="@string/touristBtnText"
+        android:layout_marginTop="141dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp" />
     <Button
         android:id="@+id/locationBtn"
         android:layout_width="wrap_content"
@@ -43,7 +54,12 @@
         android:layout_gravity="fill"
         android:layout_column="1"
         android:layout_row="2"
-        android:text="@string/locationBtnText" />
+        android:text="@string/locationBtnText"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/TouristBtn"
+        android:layout_alignEnd="@+id/TouristBtn"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp" />
     <Button
         android:id="@+id/visitKoreaBtn"
         android:layout_width="wrap_content"
@@ -51,7 +67,13 @@
         android:layout_gravity="fill"
         android:layout_column="0"
         android:layout_row="3"
-        android:text="@string/visitKoreaBtnText" />
+        android:text="@string/visitKoreaBtnText"
+        android:layout_alignBaseline="@+id/TouristBtn"
+        android:layout_alignBottom="@+id/TouristBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp" />
     <Button
         android:id="@+id/embassiesBtn"
         android:layout_width="wrap_content"
@@ -59,7 +81,11 @@
         android:layout_gravity="fill"
         android:layout_column="1"
         android:layout_row="3"
-        android:text="@string/embassiesBtnText" />
+        android:text="@string/embassiesBtnText"
+        android:layout_alignBaseline="@+id/locationBtn"
+        android:layout_alignBottom="@+id/locationBtn"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
     <Button
         android:id="@+id/callTouristPoliceBtn"
         android:layout_width="wrap_content"
@@ -68,5 +94,10 @@
         android:layout_column="0"
         android:layout_row="4"
         android:layout_columnSpan="2"
-        android:text="@string/callTouristPoliceBtnText" />
+        android:text="@string/callTouristPoliceBtnText"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -1,11 +1,19 @@
 package com.example.user.myapplication;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.user.myapplication.domain.Connected;
 import com.example.user.myapplication.presenter.MainPresenter;
 import com.example.user.myapplication.view.IMainView;
 
@@ -30,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     //프레젠터 create에서 생성
     private MainPresenter mainPresenter;
-    private Button button;
+    private Button touristBtn, locationBtn, visitKoreaBtn, embassisesBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,23 @@ public class MainActivity extends AppCompatActivity implements IMainView {
          * 이건 밑의 온클릭리스너를 어떻게 사용해야하는지 예제입니다.
          * button.setOnClickListener(touristBtnClick);
          */
+
+        touristBtn = (Button) findViewById(R.id.TouristBtn);
+        touristBtn.setOnClickListener(touristBtnClick);
+        touristBtn.setEnabled(false);
+
+        locationBtn = (Button) findViewById(R.id.locationBtn);
+        locationBtn.setOnClickListener(locationBtnClick);
+        locationBtn.setEnabled(false);
+
+        visitKoreaBtn = (Button) findViewById(R.id.visitKoreaBtn);
+        visitKoreaBtn.setOnClickListener(visitKoreaBtnClick);
+
+        embassisesBtn = (Button) findViewById(R.id.embassiesBtn);
+        embassisesBtn.setOnClickListener(embassiesBtnClick);
+
+
+
     }
 
     @Override
@@ -100,6 +125,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
              * 인텐트를 생성하고 액티비티를 시작한다
              * 이때 신고 여부를 확인합니다.
              */
+
+            if (Connected.status == -1) {
+                Intent intent = new Intent(MainActivity.this, TouristActivity.class);
+                startActivity(intent);
+            } else if (Connected.status > 0) {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                startActivity(intent);
+            }
         }
     };
 
@@ -114,6 +147,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             /*
              * 위와 같은 접근
              */
+            Intent intent = new Intent(MainActivity.this, LocationActivity.class);
+            startActivity(intent);
         }
     };
 
@@ -127,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             /*
              * 다른 앱을 열어서 웹사이트로 연결해주어야합니다
              */
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.visitkorea.or.kr/intro.html"));
+            startActivity(intent);
         }
     };
 
@@ -140,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             /*
              * embassies액티비티로 넘겨주세요
              */
+            Intent intent = new Intent(MainActivity.this, EmbassyActivity.class);
+            startActivity(intent);
         }
     };
 
@@ -165,5 +204,24 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void closeHelp() {
 
+    }
+
+
+    private boolean runtime_permissions() {
+        // sdk버전이 23 이하이면 checking이 필요없음
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission_group.PHONE}, 100);
+            // permission 을 물었다면
+            return true;
+        }
+        // permission checking 이 필요없다면
+        return false;
+    }
+    // 사용자의 요청이 일치했을 경우 버튼을 누를 수 있도록 하는 메소드
+    private void enable_buttons() {
+        locationBtn.setEnabled(true);
+        touristBtn.setEnabled(true);
     }
 }

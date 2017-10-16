@@ -15,4 +15,5 @@ import java.net.Socket;
 
 public class Global {
     public static Socket socket;
+    public static final Tourist tourist = new Tourist();
 }
