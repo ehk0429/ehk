@@ -20,6 +20,7 @@
             style="@style/resultBtnStyle"
             android:id="@+id/cancelBtn"
             android:text="cancel"
+            android:textStyle="bold"
             android:background="@drawable/buttenshape"
             />
     </LinearLayout>
@@ -47,7 +48,7 @@
             />
         <TextView
             style="@style/textviewStyle"
-            android:text="??????"
+            android:text="hahahaha"
             />
 
     </LinearLayout>

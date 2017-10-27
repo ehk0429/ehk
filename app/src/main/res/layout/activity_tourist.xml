@@ -83,6 +83,7 @@
         android:layout_marginTop="50dp"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:background="@drawable/buttenshape2"
         android:text="send" />
 
