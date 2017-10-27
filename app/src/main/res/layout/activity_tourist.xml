@@ -15,40 +15,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         tools:context="com.example.user.myapplication.TouristActivity"
      >
-    <Button
+    <Button  style="@style/touristBtnStyle"
         android:id="@+id/type1Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:drawableTop="@drawable/selector_btn_click"
         android:text="Crime"
-        android:background="#FFFFFFFF"
+
         />
 
-    <Button
+    <Button  style="@style/touristBtnStyle"
         android:id="@+id/type2Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:drawableTop="@drawable/selector_btn2_click"
-        android:drawablePadding="5dp"
         android:text="Traffic"
-        android:background="#FFFFFFFF"
         android:layout_marginLeft="20dp"
-
         />
 
-    <Button
+    <Button  style="@style/touristBtnStyle"
         android:id="@+id/type3Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:drawableTop="@drawable/selector_btn3_click"
-        android:drawablePadding="5dp"
         android:text="Restaurant"
-        android:background="#FFFFFFFF"
         android:layout_marginLeft="20dp"
+
         />
 
     </LinearLayout>
@@ -58,26 +48,18 @@
         android:layout_weight="1"
         android:gravity="center"
         >
-    <Button
+    <Button style="@style/touristBtnStyle"
         android:id="@+id/type4Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:drawableTop="@drawable/selector_btn4_click"
-        android:drawablePadding="5dp"
         android:text="Emergency"
-        android:background="#FFFFFFFF"
-
        />
 
-    <Button
+    <Button style="@style/touristBtnStyle"
         android:id="@+id/type5Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:drawableTop="@drawable/selector_btn5_click"
-        android:drawablePadding="5dp"
         android:text="etc"
-        android:background="#FFFFFFFF"
         android:layout_marginLeft="20dp"
+
      />
     </LinearLayout>
 
@@ -99,9 +81,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/buttenshape2"
         android:text="send" />
 
 </LinearLayout>

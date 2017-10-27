@@ -37,15 +37,12 @@ import java.util.ArrayList;
 public class TouristActivity extends AppCompatActivity implements ITouristView {
     private final String TAG = "Tourist Activity";
     private  int typee;
+
     //프레젠터 create에서 생성
     private TouristPresenter touristPresenter;
     private Integer type;
-    //private ImageView imageView1, imageView2, imageView3,imageView4,imageView5,imageView6;
     private EditText editText;
     private Button sendBtn;
-    //, type1Btn, type2Btn;
-
-
 
     // 여러개의 버튼을 배열로 처리하기 위해 버튼에 대해 배열 선언을 함
     private Button[] mButton = new Button[5];
@@ -70,13 +67,6 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
         sendBtn = (Button)findViewById(R.id.sendBtn);
         sendBtn.setOnClickListener(sendBtnClick);
 
-
-
-
-
-//----------------------
-
-
         DataList = new ArrayList<>();
 
         mButton[0] = (Button) findViewById(R.id.type1Btn);
@@ -85,8 +75,10 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
         mButton[3] = (Button) findViewById(R.id.type4Btn);
         mButton[4] = (Button) findViewById(R.id.type5Btn);
 
+
         // 버튼들에 대한 클릭리스너 등록 및 각 버튼이 클릭되었을 때 출력될 메시지 생성(리스트)
         for(int i = 0 ; i < 5 ; i++) {
+
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
             mButton[i].setTag(i);
 
@@ -150,6 +142,8 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
             Log.d(TAG, "send button clicked");
             //이런식의 코드가 될듯합니다.
             sendToServer(getType(), getMsg());
+
+
         }
     };
 
@@ -159,6 +153,7 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
         public void onClick(View view) {
             Log.d(TAG, "typeBtn clicked");
             sendToServer(getType(), getMsg());
+
 
             // 클릭된 뷰를 버튼으로 받아옴
             Button newButton = (Button) view;
@@ -191,10 +186,13 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
                             editText.setText("etc");
                             break;
                     }
-
                     typee = type;
 
+                    //Toast.makeText(this, DataList.get(position), Toast.LENGTH_SHORT).show();
+
+                }
             }
+
         }
 
     };
@@ -216,7 +214,6 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
 
         //touristPresenter.sendToServer(getType(),getMsg());
 
-
         Log.d(TAG, "sendToServer() DONE");
     }
     /**
@@ -233,8 +230,6 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
          *
          * 그리고 그 값에 따라서 type을 바꾸어주세요
          */
-
-
         Log.d(TAG, "getType() -> " + type);
         return type;
     }
@@ -256,7 +251,4 @@ public class TouristActivity extends AppCompatActivity implements ITouristView {
 
     }
 
-//     public void setTouristPresenter(TouristPresenter touristPresenter) {
-//        this.touristPresenter = touristPresenter;
-//    }
 }
