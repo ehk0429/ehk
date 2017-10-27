@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -209,16 +210,35 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private boolean runtime_permissions() {
         // sdk버전이 23 이하이면 checking이 필요없음
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED ) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission_group.PHONE}, 100);
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermisson(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE}, 100);
             // permission 을 물었다면
             return true;
         }
         // permission checking 이 필요없다면
         return false;
     }
+
+    // 사용자의 요청에 응답하기
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // 아까 만든 코드 100가 요청코드와 일치한다면
+        if (requestCode == 100) {
+            // 버튼을 누를 수 있또록
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED ) {
+                enable_buttons();
+
+            }// 잘 안 됐다면 permission 다시 묻기
+
+            else {
+                runtime_permissions();
+            }
+        }
+    }
+
     // 사용자의 요청이 일치했을 경우 버튼을 누를 수 있도록 하는 메소드
     private void enable_buttons() {
         locationBtn.setEnabled(true);

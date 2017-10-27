@@ -1,12 +1,17 @@
 package com.example.user.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-
+import android.widget.Button;
+import android.widget.TextView;
+import com.example.user.myapplication.domain.Connected;
 import com.example.user.myapplication.domain.Officer;
+import com.example.user.myapplication.interactor.TouristInteractor;
 import com.example.user.myapplication.presenter.ResultPresenter;
+import com.example.user.myapplication.service.WriterService;
 import com.example.user.myapplication.view.IResultView;
 
 /** by Hong Ji Hoon aka Hongvyo on github,
@@ -31,11 +36,16 @@ public class ResultActivity extends AppCompatActivity implements IResultView {
 
     //프레젠터 create에서 생성
     private ResultPresenter resultPresenter;
+    private TextView statusView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        resultPresenter = new ResultPresenter();
+        Button cancleBtn = (Button) findViewById(R.id.cancelBtn);
+        cancleBtn.setOnClickListener(cancelBtnClick);
     }
 
     @Override
@@ -90,16 +100,31 @@ public class ResultActivity extends AppCompatActivity implements IResultView {
             /*
             로직
             */
+            resultPresenter.statusChange(Connected.CANCEL);
+            //    resultPresenter.statusChange(Connected.CASE_CLOSED);
+            //   resultPresenter.officerAssigned();
+            TouristInteractor.getInstance();
+            WriterService.getInstance();
+
+
         }
     };
 
     @Override
     public void statusChange(int type) {
-        Log.d(TAG, "situEnd() CALLED");
+        Log.d(TAG, "statusChange() CALLED");
         /*
         여기에 위의 타입별로 텍스트필드의 레퍼런스를 통해
         텍스트 값을 바꾸어 주시면 됩니다.
          */
+        if(type == 64){ // 취소접수
+            statusView.setText("Cancle reception");
+        }else if (type == 128){
+
+            situEnd();
+        }
+
+
     }
 
     @Override
@@ -122,5 +147,9 @@ public class ResultActivity extends AppCompatActivity implements IResultView {
         /*
         로직
          */
+        //메시지창 띄우고 다른 엑티비티로 이동
+        statusView.setText("Case Closed ");
+        Intent intent = new Intent(ResultActivity.this, TouristActivity.class);
+        startActivity(intent);
     }
 }
